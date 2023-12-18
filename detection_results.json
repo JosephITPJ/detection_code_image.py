@@ -1,0 +1,1 @@
+{"images": [{"image_path": "images/test_image.png", "detections": [{"class": "aeroplane", "confidence": 0.8271387815475464, "bbox": [131, 110, 376, 251]}, {"class": "motorbike", "confidence": 0.6516447067260742, "bbox": [114, 282, 141, 117]}]}]}

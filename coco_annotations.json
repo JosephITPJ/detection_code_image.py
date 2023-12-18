@@ -1,0 +1,11 @@
+{
+  "images": [
+    {"id": 1, "width": 800, "height": 600, "file_name": "cat.jpg"}
+  ],
+  "annotations": [
+    {"id": 1, "image_id": 1, "category_id": 1, "bbox": [35, 19, 395, 422], "area": 4000, "iscrowd": 0}
+  ],
+  "categories": [
+    {"id": 1, "name": "cat", "supercategory": "animal"}
+  ]
+}
