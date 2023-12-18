@@ -1,12 +1,15 @@
 import cv2
 import json
+import traceback
+try:
+    model = cv2.dnn_DetectionModel("files/yolov4.weights", "files/yolov4.cfg")
+    model.setInputSize(320, 320)
+    model.setInputScale(1.0/127.5)
 
-model = cv2.dnn_DetectionModel("files/yolov4.weights", "files/yolov4.cfg")
-
-model.setInputSize(320, 320)  # Greater this value better the results; tune it for best output
-model.setInputScale(1.0/127.5)
-model.setInputMean((127.5, 127.5, 127.5))
-
+except Exception as e:
+    print(f"An error occurred: {e}")
+    traceback.print_exc()
+    
 classLabels = []
 filename = 'files/thingnames.txt'
 with open(filename, 'rt') as spt:
@@ -15,14 +18,14 @@ with open(filename, 'rt') as spt:
 # Placeholder for the list to store results
 image_results_list = []
 
-img = cv2.imread('images/cat.jpg')
+img = cv2.imread('images/apple.jpg')
 
 classIndex, confidence, bbox = model.detect(img, confThreshold=0.5)  # Tune confThreshold for best results
 
 font = cv2.FONT_HERSHEY_PLAIN
 fontScale = 2
 fontThickness = 2
-image_result = {"image_path": 'images/cat.jpg', "detections": []}
+image_result = {"image_path": 'images/apple.jpg', "detections": []}
 for classInd, conf, boxes in zip(classIndex.flatten(), confidence.flatten(), bbox):
     label = classLabels[classInd]  # Corrected for 0-based indexing
     detection = {"class": label, "confidence": float(conf), "bbox": boxes.tolist()}
